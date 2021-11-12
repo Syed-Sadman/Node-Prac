@@ -1,3 +1,3 @@
-const _=require('lodash');
+const people=require('./people.js');
 
-console.log(_.last([1,2,3]));
+console.log(people);
