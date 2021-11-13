@@ -26,11 +26,28 @@
 
 
 
-// FS Module
-const fs=require('fs');
+// // FS Module
+// const fs=require('fs');
 
-fs.readFile('mynewText.txt',(err,data)=>{
-    console.log(data.toString());
-});
+// fs.readFile('mynewText.txt',(err,data)=>{
+//     console.log(data.toString());
+// });
 
-console.log('hello');
+// console.log('hello');
+
+// event module
+
+const EventEmitter=require('events');
+
+const emitter=new EventEmitter();
+
+// register the event listener for bell ring
+
+emitter.on('bell ring',()=>{
+    console.log('We need to move now');
+})
+
+
+// raise an event 
+emitter.emit('bell ring');
+
