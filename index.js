@@ -43,11 +43,14 @@ const emitter=new EventEmitter();
 
 // register the event listener for bell ring
 
-emitter.on('bell ring',()=>{
-    console.log('We need to move now');
+emitter.on('bell ring',({period,text})=>{
+    console.log(`We need to move now because ${period} ${text}`);
 })
 
 
 // raise an event 
-emitter.emit('bell ring');
+emitter.emit('bell ring',{
+    period:'first',
+    text:'period ended'
+});
 
