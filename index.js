@@ -37,20 +37,19 @@
 
 // event module
 
-const EventEmitter=require('events');
 
-const emitter=new EventEmitter();
+
+const Period=require('./period.js');
+
+const period=new Period();
 
 // register the event listener for bell ring
 
-emitter.on('bell ring',({period,text})=>{
+period.on('bell ring',({period,text})=>{
     console.log(`We need to move now because ${period} ${text}`);
 })
 
 
 // raise an event 
-emitter.emit('bell ring',{
-    period:'first',
-    text:'period ended'
-});
 
+period.startPeriod();
