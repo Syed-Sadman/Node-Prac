@@ -2,7 +2,10 @@ const express=require('express');
 
 const app=express();
 
-app.use(express.urlencoded());
+app.use(express.static(`${__dirname}/public`,{
+    index:'home.html'
+    })
+);
 
 
 app.get('/',(req,res)=>{ 
@@ -10,7 +13,6 @@ app.get('/',(req,res)=>{
 })
 
 app.post('/',(req,res)=>{
-    console.log(req.body);
     res.send('This is the homepage with post request');
 })
 
