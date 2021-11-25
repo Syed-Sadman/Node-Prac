@@ -2,7 +2,7 @@ const express=require('express');
 
 const app=express();
 
-app.use(express.raw());
+app.use(express.urlencoded());
 
 
 app.get('/',(req,res)=>{ 
@@ -10,7 +10,7 @@ app.get('/',(req,res)=>{
 })
 
 app.post('/',(req,res)=>{
-    console.log(req.body.toString());
+    console.log(req.body);
     res.send('This is the homepage with post request');
 })
 
