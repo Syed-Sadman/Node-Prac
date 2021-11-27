@@ -4,6 +4,8 @@ const app=express();
 
 const admin=express();
 
+
+app.set('view engine', 'ejs');
     //static express
 // app.use(express.static(`${__dirname}/public`,{
 //     index:'home.html'
@@ -17,20 +19,30 @@ const admin=express();
 // })
 
 
-app.param('id',(req,res,next,id)=>{
-    const user={
-        name:id,
-        identity:'Bangladesh'
-    }
-    req.userDetails=user;
+app.route('/about/mission')
+    .get((req,res)=>{
+        res.render('abt')
+    })
+    .post((req,res)=>{
+        res.send('this is page post')
+    })
+    .put((req,res)=>{
+        res.send('this is page put')
+    })
+// app.param('id',(req,res,next,id)=>{
+//     const user={
+//         name:id,
+//         identity:'Bangladesh'
+//     }
+//     req.userDetails=user;
     
-    next();
-})
+//     next();
+// })
 
-app.get('/user/:id',(req,res)=>{
-    console.log(req.userDetails);
-    res.send('welcome to homepage');
-})
+// app.get('/user/:id',(req,res)=>{
+//     console.log(req.userDetails);
+//     res.send('welcome to homepage');
+// })
 
 // app.use('/admin',admin);
 
