@@ -1,9 +1,10 @@
 const express=require('express');
-
+const cookieParser=require('cookie-parser');
 const app=express();
 
 const adminPan=express.Router();
 
+app.use(cookieParser())
 
 //app.set('view engine', 'ejs');
     //static express
@@ -22,7 +23,7 @@ app.use('/admin',adminPan)
 
 
 adminPan.get('/dashboard',(req,res)=>{
-    console.log(req.path);
+    console.log(req.cookies);
     res.send('we are in admin dashboard');
 })
 
