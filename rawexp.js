@@ -2,10 +2,10 @@ const express=require('express');
 
 const app=express();
 
-const admin=express();
+const adminPan=express.Router();
 
 
-app.set('view engine', 'ejs');
+//app.set('view engine', 'ejs');
     //static express
 // app.use(express.static(`${__dirname}/public`,{
 //     index:'home.html'
@@ -18,17 +18,33 @@ app.set('view engine', 'ejs');
 //     res.send('welcome to admin dashboard');
 // })
 
+app.use('/admin',adminPan)
 
-app.route('/about/mission')
-    .get((req,res)=>{
-        res.render('abt')
-    })
-    .post((req,res)=>{
-        res.send('this is page post')
-    })
-    .put((req,res)=>{
-        res.send('this is page put')
-    })
+
+adminPan.get('/dashboard',(req,res)=>{
+    console.log(req.path);
+    res.send('we are in admin dashboard');
+})
+
+
+
+
+app.get('/user/:id',(req,res)=>{
+    console.log(req.originalUrl);
+    res.send('welcome to user page');
+
+})
+
+// app.route('/about/mission')
+//     .get((req,res)=>{
+//         res.render('abt')
+//     })
+//     .post((req,res)=>{
+//         res.send('this is page post')
+//     })
+//     .put((req,res)=>{
+//         res.send('this is page put')
+//     })
 // app.param('id',(req,res,next,id)=>{
 //     const user={
 //         name:id,
