@@ -9,15 +9,29 @@ app.use(cookieParser());// cookie-parser middleware
 const adminRouter=express.Router();
 
 
-const logger=(req,res,next)=>{
-    console.log(`${new Date(Date.now()).toLocaleString()}`);
-    throw new Error('an unexpted erorr occured');
+
+
+const loggerWrapper=(options)=>{
+    return function(req,res,next){
+        if(options.log){
+            console.log(`${new Date(Date.now()).toLocaleString()}`);
+            next();
+        }else{
+            throw new Error('failed to log');
+        }
+    }
 }
 
 
+// const logger=(req,res,next)=>{
+//     console.log(`${new Date(Date.now()).toLocaleString()}`);
+//     throw new Error('an unexpted erorr occured');
+// }
 
 
-adminRouter.use(logger);
+
+
+adminRouter.use(loggerWrapper({log:false}));
 
 
 adminRouter.get('/dashboard',(req,res)=>{
