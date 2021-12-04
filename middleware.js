@@ -11,7 +11,7 @@ const adminRouter=express.Router();
 
 const logger=(req,res,next)=>{
     console.log(`${new Date(Date.now()).toLocaleString()}`);
-    next();
+    throw new Error('an unexpted erorr occured');
 }
 
 
@@ -23,6 +23,14 @@ adminRouter.use(logger);
 adminRouter.get('/dashboard',(req,res)=>{
     res.send('Dashboard')
 })
+
+
+const errorMiddleware=(err,req,res,next)=>{
+    console.log(err.message);
+    res.status(500).send('server side error occured');
+}
+
+adminRouter.use(errorMiddleware);
 
 
 app.use('/admin',adminRouter);
