@@ -35,21 +35,44 @@
 
 // console.log('hello');
 
-// event module
+// // event module
 
 
 
-const Period=require('./period.js');
+// const Period=require('./period.js');
 
-const period=new Period();
+// const period=new Period();
 
-// register the event listener for bell ring
+// // register the event listener for bell ring
 
-period.on('bell ring',({period,text})=>{
-    console.log(`We need to move now because ${period} ${text}`);
-})
+// period.on('bell ring',({period,text})=>{
+//     console.log(`We need to move now because ${period} ${text}`);
+// })
 
 
-// raise an event 
+// // raise an event 
 
-period.startPeriod();
+// period.startPeriod();
+
+
+const express=require('express');
+const adminRouter = require('./adminRouter');
+const publicRouter = require('./publicRouter');
+
+const app=express();
+
+app.use('/',publicRouter);
+app.use('/admin',adminRouter);
+
+
+
+app.listen(3000,()=>{
+    console.log('listening on port 3000');
+});
+
+
+
+
+
+
+
