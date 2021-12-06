@@ -4,8 +4,14 @@ const publicRouter=express.Router();
 
 
 
-publicRouter.get('/',(req,res)=>{
-    res.send('Home');
+
+publicRouter.param('user',(req,res,next,id)=>{
+    req.user=id=='1'?'Admin':'Anonymous';
+    next();
+})
+
+publicRouter.get('/:user',(req,res)=>{
+    res.send(`Hello ${req.user}`);
 })
 
 publicRouter.get('/about',(req,res)=>{
