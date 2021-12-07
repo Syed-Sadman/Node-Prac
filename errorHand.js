@@ -17,6 +17,16 @@ app.use((err,req,res,next)=>{
     res.status(500).send('there was an error');
 })
 
+
+//invisible error handler
+
+// app.use((err,req,res,next)=>{
+//     //handle error here
+// })
+
+
+
+
 app.listen(3000,()=>{
     console.log('listening on port 3000');
 })
