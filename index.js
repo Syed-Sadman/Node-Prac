@@ -56,16 +56,44 @@
 
 
 const express=require('express');
-const adminRouter = require('./adminRouter');
-const publicRouter = require('./publicRouter');
+const mongoose=require('mongoose');
+const todoHandler=require('./todoHandler')
+// const adminRouter = require('./adminRouter');
+// const publicRouter = require('./publicRouter');
 
+
+
+
+//express app initialization
 const app=express();
-
-app.use('/',publicRouter);
-app.use('/admin',adminRouter);
+app.use(express.json());
 
 
 
+//database connection with mongoose
+mongoose
+    .connect('mongodb://localhost/todos', {useNewUrlParser: true,useUnifiedTopology:true})
+    .then(()=>console.log('successfully connected'))
+    .catch((err)=>console.log(err))
+
+
+
+
+//application routes
+
+app.use('/todo',todoHandler)
+
+
+//default error handling function 
+function errorHandler(err,req,res,next){
+    if( res.headersSent){
+        return next(err)
+    }
+    res.status(500).json({error:err})
+}
+
+
+//port listening 
 app.listen(3000,()=>{
     console.log('listening on port 3000');
 });
