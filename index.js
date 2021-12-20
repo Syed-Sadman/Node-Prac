@@ -66,13 +66,17 @@ const todoHandler=require('./todoHandler')
 
 //express app initialization
 const app=express();
+
 app.use(express.json());
 
 
 
 //database connection with mongoose
 mongoose
-    .connect('mongodb://localhost/todos', {useNewUrlParser: true,useUnifiedTopology:true})
+    .connect('mongodb://localhost/todos',{
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      })
     .then(()=>console.log('successfully connected'))
     .catch((err)=>console.log(err))
 
