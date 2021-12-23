@@ -19,10 +19,11 @@ router.get('/:id',async(req,res)=>{
 // POST TODOS
 router.post("/", async (req, res) => {
     const newTodo = new Todo(req.body);
+    console.log(req.body);
     await newTodo.save((err) => {
       if (err) {
         res.status(500).json({
-          error: err,
+          error: err
         });
       } else {
         res.status(200).json({
@@ -30,6 +31,7 @@ router.post("/", async (req, res) => {
         });
       }
     });
+    
   });
 
 // POST Multiple TODOS

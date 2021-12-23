@@ -3,11 +3,11 @@ const mongoose = require("mongoose");
 const todoSchema = mongoose.Schema({
   name:{
       type:String,
-      required:false,
+      required:true,
   },  
   age:{
       type:Number,
-      required:false
+      required:true
   }
 
 //   status: {
